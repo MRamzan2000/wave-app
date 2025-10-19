@@ -5,6 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weave_app/controller/onboarding_controller.dart';
 import 'package:weave_app/view/reuseable_widgets/custom_elevated_button.dart';
 import 'package:weave_app/view/reuseable_widgets/get_verticle_space.dart';
+import 'package:weave_app/view/screens/login_screen.dart';
 import 'package:weave_app/view/utils/app_colors.dart';
 import 'package:weave_app/view/utils/app_styles.dart';
 
@@ -87,7 +88,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           bgColor: AppColors.primaryColor,
                           titleColor: AppColors.textLight,
                           onTap: () {
-                            onboardingController.nextPage();
+                            if(onboardingController.currentPage.value==3){
+                              Get.offAll(()=>LoginScreen());
+                            }else{
+                              onboardingController.nextPage();
+                            }
                           },
                         ),
                       ),
