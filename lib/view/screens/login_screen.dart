@@ -6,7 +6,9 @@ import 'package:weave_app/view/reuseable_widgets/custom_elevated_button.dart';
 import 'package:weave_app/view/reuseable_widgets/custom_textfield.dart';
 import 'package:weave_app/view/reuseable_widgets/get_horizontal_space.dart';
 import 'package:weave_app/view/reuseable_widgets/get_verticle_space.dart';
+import 'package:weave_app/view/screens/forgot_password.dart';
 import 'package:weave_app/view/screens/signup_screen.dart';
+import 'package:weave_app/view/screens/welcom_screen.dart';
 import 'package:weave_app/view/utils/app_colors.dart';
 import 'package:weave_app/view/utils/app_styles.dart';
 
@@ -18,12 +20,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final AuthController authController = Get.put(AuthController());
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
   @override
   void dispose() {
     super.dispose();
-    authController.emailController.dispose();
-    authController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
   @override
@@ -68,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   verticalSpace(.4.h),
                   CustomTextField(
-                    controller: authController.emailController,
+                    controller: emailController,
                     hintText: "Enter your email",
                     prefixIconPath: "assets/icons/email.svg",
                   ),
@@ -79,21 +82,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   verticalSpace(.4.h),
                   CustomTextField(
-                    controller: authController.passwordController,
+                    controller:passwordController,
                     hintText: "***********",
                     prefixIconPath: "assets/icons/password.svg",
                     showSuffixIcon: true,
                   ),
                   verticalSpace(1.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Forgot Password",
-                        style: AppTextStyles.regularTextStyle.copyWith(
-                            color: AppColors.primaryColor, fontSize: 15.sp),
-                      )
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(()=>ForgotPasswordScreen());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "Forgot Password",
+                          style: AppTextStyles.regularTextStyle.copyWith(
+                              color: AppColors.primaryColor, fontSize: 15.sp),
+                        )
+                      ],
+                    ),
                   ),
                   verticalSpace(3.h),
                   Row(
@@ -103,7 +111,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               title: "Log In",
                               bgColor: AppColors.primaryColor,
                               titleColor: AppColors.white,
-                              onTap: () {}))
+                              onTap: () {
+                                Get.off(()=>WelcomeScreen());
+                              }))
                     ],
                   ),
                   verticalSpace(3.h),

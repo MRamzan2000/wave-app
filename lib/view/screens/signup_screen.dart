@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:weave_app/controller/auth_controller.dart';
 import 'package:weave_app/view/reuseable_widgets/custom_elevated_button.dart';
 import 'package:weave_app/view/reuseable_widgets/custom_textfield.dart';
 import 'package:weave_app/view/reuseable_widgets/get_verticle_space.dart';
 import 'package:weave_app/view/utils/app_colors.dart';
 import 'package:weave_app/view/utils/app_styles.dart';
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
-
   @override
   State<SignUpScreen> createState() => _LoginSignUpScreen();
 }
-
 class _LoginSignUpScreen extends State<SignUpScreen> {
-  final AuthController authController = Get.put(AuthController());
-  @override
+  TextEditingController nameController=TextEditingController();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
+  TextEditingController confirmPasswordController=TextEditingController();  @override
   void dispose() {
     super.dispose();
-    authController.emailController.dispose();
-    authController.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
   }
 
   @override
@@ -66,7 +65,7 @@ class _LoginSignUpScreen extends State<SignUpScreen> {
                       ),
                       verticalSpace(.4.h),
                       CustomTextField(
-                        controller: authController.nameController,
+                        controller:nameController,
                         hintText: "Lita han",
                         prefixIconPath: "assets/icons/email.svg",
                       ),
@@ -77,7 +76,7 @@ class _LoginSignUpScreen extends State<SignUpScreen> {
                       ),
                       verticalSpace(.4.h),
                       CustomTextField(
-                        controller: authController.emailController,
+                        controller:emailController,
                         hintText: "Enter your email",
                         prefixIconPath: "assets/icons/email.svg",
                       ),
@@ -88,7 +87,7 @@ class _LoginSignUpScreen extends State<SignUpScreen> {
                       ),
                       verticalSpace(.4.h),
                       CustomTextField(
-                        controller: authController.passwordController,
+                        controller:passwordController,
                         hintText: "***********",
                         prefixIconPath: "assets/icons/password.svg",
                         showSuffixIcon: true,
@@ -100,7 +99,7 @@ class _LoginSignUpScreen extends State<SignUpScreen> {
                       ),
                       verticalSpace(.4.h),
                       CustomTextField(
-                        controller: authController.confirmPasswordController,
+                        controller:confirmPasswordController,
                         hintText: "***********",
                         prefixIconPath: "assets/icons/password.svg",
                         showSuffixIcon: true,
