@@ -27,7 +27,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 30.h,
               width: MediaQuery.sizeOf(context).width - 5.w,
               child: Image(
                 image: AssetImage("assets/images/welcome.png"),
