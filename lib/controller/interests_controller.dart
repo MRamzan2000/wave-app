@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:weave_app/model/gender_model.dart';
 import 'package:weave_app/model/interest_model.dart';
+import 'package:weave_app/model/relation_model.dart';
 
 class InterestController extends GetxController {
   var interest = [
@@ -30,6 +31,11 @@ class InterestController extends GetxController {
     GenderModel(name: "Custom"),
   ];
 
-  GenderModel? selectedGender; // store selected value
+  Rx<GenderModel?> selectedGender = Rx<GenderModel?>(null);
+  List<RelationModel>relationList=[
+    RelationModel(title: "Single"),
+    RelationModel(title: "Married"),
+  ].obs;
+  Rx<RelationModel?> selectRelation= Rx<RelationModel?>(null);
 
 }
