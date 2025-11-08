@@ -72,7 +72,6 @@ class PostCard extends StatelessWidget {
         ActionRow(
           likes: post.likes,
           comments: post.comments,
-          onLike: () {},
           onComment: () {},
           onShare: () {},
         ),

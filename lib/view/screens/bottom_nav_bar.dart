@@ -20,7 +20,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
       () => Scaffold(
         body: bottomNavController.screens[bottomNavController.selectedIndex.value],
         bottomNavigationBar: Container(
-          height: 8.h,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
