@@ -7,6 +7,8 @@ import 'package:weave_app/view/reuseable_widgets/custom_appbar.dart';
 import 'package:weave_app/view/reuseable_widgets/get_horizontal_space.dart';
 import 'package:weave_app/view/reuseable_widgets/get_verticle_space.dart';
 
+import 'chat_detail_screen.dart';
+
 class ChatScreen extends StatelessWidget {
   ChatScreen({super.key});
 
@@ -45,11 +47,16 @@ class ChatScreen extends StatelessWidget {
                     itemCount: chatController.chats.length,
                     itemBuilder: (context, index) {
                       final c = chatController.chats[index];
-                      return ChatItem(
-                        image: c.image,
-                        userName: c.name,
-                        message: c.message,
-                        isOnline: c.isOnline,
+                      return GestureDetector(
+                        onTap: (){
+                          Get.to(()=>ChatDetailScreen(userName: c.name, userImage: c.image,));
+                        },
+                        child: ChatItem(
+                          image: c.image,
+                          userName: c.name,
+                          message: c.message,
+                          isOnline: c.isOnline,
+                        ),
                       );
                     },
                   )),

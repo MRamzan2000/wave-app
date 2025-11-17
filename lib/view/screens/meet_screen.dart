@@ -6,6 +6,9 @@ import 'package:weave_app/controller/meet_controller.dart';
 import 'package:weave_app/view/reuseable_widgets/custom_appbar.dart';
 import 'package:weave_app/view/reuseable_widgets/meet_widgets/meet_item.dart';
 
+import 'filter_screen.dart';
+import 'meet_detail_screen.dart';
+
 
 class MeetScreen extends StatelessWidget {
   MeetScreen({super.key});
@@ -17,7 +20,11 @@ class MeetScreen extends StatelessWidget {
     return Scaffold(
       appBar: appBar(
         title: "Meet",
-        action: [SvgPicture.asset("assets/icons/filter.svg")],
+        action: [GestureDetector(
+          onTap: (){
+            Get.to(()=>FilterScreen());
+          },
+            child: SvgPicture.asset("assets/icons/filter.svg"))],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 4.w),
@@ -30,12 +37,17 @@ class MeetScreen extends StatelessWidget {
               childAspectRatio: 0.8),
           itemBuilder: (context, index) {
             final m = meetController.meets[index];
-            return MeetItem(
-              image: m.userImage,
-              name: m.userName,
-              country1: m.country1,
-              country2: m.country2,
-              greeting: m.greeting,
+            return GestureDetector(
+              onTap: (){
+                Get.to(()=>MeetDetailScreen(name: m.userName, profileImage:  m.userImage, greeting: m.greeting,));
+              },
+              child: MeetItem(
+                image: m.userImage,
+                name: m.userName,
+                country1: m.country1,
+                country2: m.country2,
+                greeting: m.greeting,
+              ),
             );
           },
         )),
